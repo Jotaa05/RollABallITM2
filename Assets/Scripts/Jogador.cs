@@ -27,6 +27,13 @@ public class Jogador : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Coletavel"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
 
     // Update is called once per frame
     void Update()
