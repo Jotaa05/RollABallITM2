@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Coletavel
+  - Coletavel1
+  - Coletavel2
+  - Coletavel3
   layers:
   - Default
   - TransparentFX

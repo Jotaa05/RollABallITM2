@@ -18,6 +18,9 @@ public class Jogador : MonoBehaviour
 
     public TMP_Text vitoria;
 
+    public float forcaDeSalto = 5f;
+    private bool estaNoChao;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +34,7 @@ public class Jogador : MonoBehaviour
     void Contador()
     {
         contar.text = "Contador: "  + contador.ToString();  
-        if (contador >= 6)
+        if (contador >= 12)
         {
             vitoria.text = "Ganhou! Parabens";
         }
@@ -50,10 +53,21 @@ public class Jogador : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Coletavel"))
+        if(other.gameObject.CompareTag("Coletavel1"))
         {
             other.gameObject.SetActive(false);
             contador = contador + 1;
+            Contador();
+        }else if (other.gameObject.CompareTag("Coletavel2"))
+        {
+            other.gameObject.SetActive(false);
+            contador = contador + 2;
+            Contador();
+        }
+        else if (other.gameObject.CompareTag("Coletavel3"))
+        {
+            other.gameObject.SetActive(false);
+            contador = contador + 3;
             Contador();
         }
     }
@@ -61,8 +75,14 @@ public class Jogador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
+        estaNoChao = Physics.Raycast(transform.position, Vector3.down, 0.5f);
+
+
+        if (estaNoChao && Input.GetButtonDown("Jump"))
+        {
+            rb.velocity = new Vector3(rb.velocity.x, forcaDeSalto, rb.velocity.z);
+        }
+    }
 
 }
